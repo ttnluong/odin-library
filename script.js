@@ -45,14 +45,11 @@ form.addEventListener("submit", (event) => {
     const title = document.getElementById("title").value;
     const author = document.getElementById("author").value;
     const pages = document.getElementById("pages").value;
-    const read = document.querySelector("input[name='read']:checked").value;
+    const read = document.querySelector("input[name='read']:checked")?.value || "";
 
     addBookToLibrary(title, author, pages, read);
-
     displayBooks();
-
     form.reset();
-
 });
 
 displayBooks();
