@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-     <form action="#" method="get">
+     <form id="form" action="#" method="get">
         <div class="form-section">
              <div class="form-content">
                 <label for="title">Title</label>
@@ -16,7 +16,7 @@
             </div>
             <div class="form-content">
                 <label for="author">Author</label>
-                    <input type="text" id="author" name="author">
+                    <input type="text" id="author" name="author" value="">
             </div>
             <div class="form-content">
                 <label for="pages">Number of pages</label>
@@ -24,16 +24,16 @@
             </div>
             <div class="form-content">
                 <label for="read">Read</label>
-                <input type="radio" id="true" name="read" value="true">
+                <input type="radio" id="true" name="read" value="Yes">
                 <label for="true">Yes</label>
-                <input type="radio" id="false" name="read" value="false">
+                <input type="radio" id="false" name="read" value="No">
                 <label for="false">No</label>
             </div>
             <div class="add-book-button">
                 <button type="submit" id="submit">Add book</button>
             </div>
             <div class="reset-form-button">
-                <button type="reset" id="reset">Reset</button>
+                <button type="reset">Reset</button>
             </div>
         </div>
     </form>
