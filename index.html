@@ -16,14 +16,24 @@
             </div>
             <div class="form-content">
                 <label for="author">Author</label>
-                    <input type="text" id="author" name="author" required>
+                    <input type="text" id="author" name="author">
             </div>
             <div class="form-content">
                 <label for="pages">Number of pages</label>
-                <input type="number" id="pages" name="pages" required>
+                <input type="number" id="pages" name="pages">
+            </div>
+            <div class="form-content">
+                <label for="read">Read</label>
+                <input type="radio" id="true" name="read" value="true">
+                <label for="true">Yes</label>
+                <input type="radio" id="false" name="read" value="false">
+                <label for="false">No</label>
             </div>
             <div class="add-book-button">
                 <button type="submit" id="submit">Add book</button>
+            </div>
+            <div class="reset-form-button">
+                <button type="reset" id="reset">Reset</button>
             </div>
         </div>
     </form>
