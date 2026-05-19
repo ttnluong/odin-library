@@ -39,3 +39,5 @@ addBookToLibrary("1984", "Orwell", 328, false);
 addBookToLibrary("Dune", "Herbert", 412, true);
 
 displayBooks();
+
+console.log(myLibrary);
