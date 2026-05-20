@@ -39,13 +39,12 @@ body {
 }
 
 .container {
+    height: 100%;
     display: grid;
-    grid-template: auto 1fr / 1fr 2fr;
+    grid-template: auto 1fr / 2fr 4fr;
     grid-template-areas: 
     "stats header"
     "form library";
-    gap: 60px;
-    padding: 100px 140px 0px;
     background-color: bisque;
 }
 
@@ -54,6 +53,9 @@ body {
 
 header {
     grid-area: header;
+    padding-top: 100px;
+    padding-right: calc(0px + 2vw);
+    padding-left: calc(0px + 2vw);
     background-color: darkseagreen;
 }
 
@@ -63,18 +65,20 @@ header {
 .library {
     grid-area: library;
     display: grid;
-    justify-content: center;
+    grid-auto-rows: min-content;
     gap: 10px;
-    padding: 20px;
+    padding-right: calc(0px + 2vw);
+    padding-left: calc(0px + 2vw);
     background-color: burlywood;
 }
 
 .card {
-    width: 1056px;
+    max-width: 900px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr auto;
+    grid-template-columns: 1.5fr 1fr 0.3fr 0.5fr 0.2fr;
+    align-items: center;
     gap: 20px;
-    padding: 20px;
+    padding: 20px 0px;
     border: 1px solid red;
     line-height: 1;
 }
@@ -99,10 +103,33 @@ aside {
 
 .stats {
     grid-area: stats;
+    display: flex;
+    justify-content: end;
+    padding-top: 100px;
+    padding-right: calc(0px + 2vw);
+    padding-left: calc(0px + 2vw);
     background-color: cadetblue;
+}
+
+ol {
+    flex-basis: 320px;
+    min-width: 260px;
 }
 
 form {
     grid-area: form;
+    display: flex;
+    justify-content: end;
+    padding-right: calc(0px + 2vw);
+    padding-left: calc(0px + 2vw);
     background-color: azure;
+}
+
+.form-section {
+    flex-basis: 320px;
+    min-width: 260px;
+}
+
+.form-content {
+    display: grid;
 }
