@@ -15,7 +15,10 @@ function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(book);
 }
 
-// loops through the library array and displays each book on the page
+// stored book id for deletion
+let selectedBookId = null;
+
+// loops through the library array and displays each book on the page as a card, each card has a toggle read button and delete book button
 function displayBooks() {
   const container = document.querySelector(".library");
   container.innerHTML = "";
@@ -26,7 +29,7 @@ function displayBooks() {
     const bookAuthor = document.createElement("p");
     const bookPages = document.createElement("p");
     const bookReadBtn = document.createElement("button");
-    const deleteBtn = document.createElement("button");
+    const modalDeleteBtn = document.createElement("button");
     const deleteIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     const useElem = document.createElementNS("http://www.w3.org/2000/svg", "use");
 
@@ -37,22 +40,23 @@ function displayBooks() {
     card.appendChild(bookAuthor);
     card.appendChild(bookPages);
     card.appendChild(bookReadBtn);
-    card.appendChild(deleteBtn);
+    card.appendChild(modalDeleteBtn);
 
     bookTitle.textContent = book.title;
     bookAuthor.textContent = book.author;
     bookPages.textContent = book.pages;
     bookReadBtn.textContent = book.read;
     bookReadBtn.classList.add("read-btn");
-    deleteBtn.classList.add("delete-btn");
+    modalDeleteBtn.classList.add("modal-delete-btn");
+    modalDeleteBtn.setAttribute("popovertarget", "delete-modal");
 
-    deleteBtn.appendChild(deleteIcon);
+    modalDeleteBtn.appendChild(deleteIcon);
     deleteIcon.appendChild(useElem);
 
     deleteIcon.classList.add("delete-icon");
     useElem.setAttribute("href", "./svg/feather-sprite.svg#trash-2");
 
-    // read status button
+    // toggle read status 
     bookReadBtn.addEventListener("click", (e) => {
         const bookId = e.target.closest(".card").dataset.id;
         const book = myLibrary.find(element => element.id === bookId);
@@ -60,19 +64,34 @@ function displayBooks() {
         displayBooks();
     })
 
-    // attach event listener to each card's delete button
-    deleteBtn.addEventListener("click", (e) => {
-        const bookId = e.target.closest(".card").dataset.id;
-        const findBook = myLibrary.findIndex(element => element.id === bookId)
-        myLibrary.splice(findBook, 1);
-        displayBooks(); // re-render instead of manually removing card
-    });
+    // toggle delete modal, store book id
+    modalDeleteBtn.addEventListener("click", (e) => {
+        selectedBookId = e.target.closest(".card").dataset.id;
+    })
+
+    // delete book
+    // deleteBtn.addEventListener("click", (e) => {
+    //     const bookId = e.target.closest(".card").dataset.id;
+    //     const findBook = myLibrary.findIndex(element => element.id === bookId)
+    //     myLibrary.splice(findBook, 1);
+    //     displayBooks(); // re-render instead of manually removing card
+    // });
 
     container.appendChild(card);
   });
 }
 
-// get book details from user form input, add book to library
+// 
+
+const deleteBtn = document.querySelector(".delete-btn");
+
+deleteBtn.addEventListener("click", (e) => {
+        const findBook = myLibrary.findIndex(element => element.id === selectedBookId)
+        myLibrary.splice(findBook, 1);
+        displayBooks(); // re-render instead of manually removing card
+    });
+
+// get book details from user form inputs, add book to library
 const addBook = document.getElementById("form");
 
 addBook.addEventListener("submit", (event) => {
@@ -87,7 +106,7 @@ addBook.addEventListener("submit", (event) => {
     form.reset();
 });
 
-// toggle read status prototype
+// toggle read status prototype function
 Book.prototype.toggleRead = function () {
     if (this.read === "Read") {
         this.read = "Still reading";
