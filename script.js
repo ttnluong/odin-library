@@ -9,13 +9,13 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
-// store new book object into the array
+// store new book object into the library array
 function addBookToLibrary(title, author, pages, read) {
     const book = new Book(title, author, pages, read);
     myLibrary.push(book);
 }
 
-// loops through array and displays each book on the page
+// loops through the library array and displays each book on the page
 function displayBooks() {
   const container = document.querySelector(".library");
   container.innerHTML = "";
@@ -25,7 +25,7 @@ function displayBooks() {
     const bookTitle = document.createElement("h3");
     const bookAuthor = document.createElement("p");
     const bookPages = document.createElement("p");
-    const bookRead = document.createElement("p");
+    const bookReadBtn = document.createElement("button");
     const deleteBtn = document.createElement("button");
     const deleteIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     const useElem = document.createElementNS("http://www.w3.org/2000/svg", "use");
@@ -36,13 +36,14 @@ function displayBooks() {
     card.appendChild(bookTitle);
     card.appendChild(bookAuthor);
     card.appendChild(bookPages);
-    card.appendChild(bookRead);
+    card.appendChild(bookReadBtn);
     card.appendChild(deleteBtn);
 
     bookTitle.textContent = book.title;
     bookAuthor.textContent = book.author;
     bookPages.textContent = book.pages;
-    bookRead.textContent = book.read;
+    bookReadBtn.textContent = book.read;
+    bookReadBtn.classList.add("read-btn");
     deleteBtn.classList.add("delete-btn");
 
     deleteBtn.appendChild(deleteIcon);
@@ -51,13 +52,18 @@ function displayBooks() {
     deleteIcon.classList.add("delete-icon");
     useElem.setAttribute("href", "./svg/feather-sprite.svg#trash-2");
 
+    // read status button
+    bookReadBtn.addEventListener("click", () => {
+    book.status();
+    })
+
     // attach event listener to each card's delete button
-    card.querySelector(".delete-btn").addEventListener("click", (e) => {
+    deleteBtn.addEventListener("click", (e) => {
         const bookId = e.target.closest(".card").dataset.id;
         const findBook = myLibrary.findIndex(element => element.id === bookId)
         myLibrary.splice(findBook, 1);
         displayBooks(); // re-render instead of manually removing card
-  });
+    });
 
     container.appendChild(card);
   });
@@ -71,7 +77,7 @@ addBook.addEventListener("submit", (event) => {
     const title = document.getElementById("title").value;
     const author = document.getElementById("author").value;
     const pages = document.getElementById("pages").value;
-    const read = document.querySelector("input[name='read']:checked")?.value || "";
+    const read = document.querySelector("input[name='read']:checked")?.value || "No status";
 
     addBookToLibrary(title, author, pages, read);
     displayBooks();
@@ -79,8 +85,19 @@ addBook.addEventListener("submit", (event) => {
 });
 
 // display examples
-addBookToLibrary("The Hobbit", "Tolkien", 310, "Yes");
-addBookToLibrary("1984", "Orwell", 328, "No");
-addBookToLibrary("Dune", "Herbert", 412, "Yes");
+addBookToLibrary("The Hobbit", "Tolkien", 310, "Read");
+addBookToLibrary("1984", "Orwell", 328, "Not read");
+addBookToLibrary("Dune", "Herbert", 412, "Read");
 
 displayBooks();
+
+
+ Book.prototype.toggleRead = function () {
+        if (this.read === "Read") {
+            this.read = "Still reading";
+        } else if (this.read === "Still reading") {
+            this.read = "Not read";
+        } else {
+            this.read = "Read";
+        }
+        }
