@@ -1,3 +1,13 @@
+/* VARIABLES
+====================================================== */
+
+:root { 
+    --c-black: #0c0c0c;
+}
+
+/* NORMALISE
+====================================================== */
+
 *, *:before, *:after {
     margin: 0;
     padding: 0;
@@ -18,21 +28,81 @@ button {
     cursor: pointer;
 }
 
+/* BASE
+====================================================== */
 
+body {
+    height: 100vh;
+    font-family: "Inter Variable", sans-serif;
+    line-height: 1.4;
+    color: var(--c-black);
+}
+
+.container {
+    display: grid;
+    grid-template: auto 1fr / 1fr 2fr;
+    grid-template-areas: 
+    "stats header"
+    "form library";
+    gap: 60px;
+    padding: 100px 140px 0px;
+    background-color: bisque;
+}
+
+/* HEADER
+====================================================== */
+
+header {
+    grid-area: header;
+    background-color: darkseagreen;
+}
+
+/* MAIN
+====================================================== */
 
 .library {
+    grid-area: library;
     display: grid;
     justify-content: center;
     gap: 10px;
     padding: 20px;
+    background-color: burlywood;
 }
 
 .card {
     width: 1056px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr auto;
     gap: 20px;
     padding: 20px;
     border: 1px solid red;
     line-height: 1;
+}
+
+.delete-icon {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+}
+
+/* ASIDE
+====================================================== */
+
+aside {
+    display: contents;
+    background-color: darkgrey;
+}
+
+.stats {
+    grid-area: stats;
+    background-color: cadetblue;
+}
+
+form {
+    grid-area: form;
+    background-color: azure;
 }
