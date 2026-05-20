@@ -53,8 +53,11 @@ function displayBooks() {
     useElem.setAttribute("href", "./svg/feather-sprite.svg#trash-2");
 
     // read status button
-    bookReadBtn.addEventListener("click", () => {
-    book.status();
+    bookReadBtn.addEventListener("click", (e) => {
+        const bookId = e.target.closest(".card").dataset.id;
+        const book = myLibrary.find(element => element.id === bookId);
+        book.toggleRead();
+        displayBooks();
     })
 
     // attach event listener to each card's delete button
@@ -84,20 +87,20 @@ addBook.addEventListener("submit", (event) => {
     form.reset();
 });
 
+// toggle read status prototype
+Book.prototype.toggleRead = function () {
+    if (this.read === "Read") {
+        this.read = "Still reading";
+    } else if (this.read === "Still reading") {
+        this.read = "Not read";
+    } else {
+        this.read = "Read";
+    }
+}
+
 // display examples
 addBookToLibrary("The Hobbit", "Tolkien", 310, "Read");
 addBookToLibrary("1984", "Orwell", 328, "Not read");
 addBookToLibrary("Dune", "Herbert", 412, "Read");
 
 displayBooks();
-
-
- Book.prototype.toggleRead = function () {
-        if (this.read === "Read") {
-            this.read = "Still reading";
-        } else if (this.read === "Still reading") {
-            this.read = "Not read";
-        } else {
-            this.read = "Read";
-        }
-        }
