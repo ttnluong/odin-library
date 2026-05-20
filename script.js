@@ -15,19 +15,37 @@ function addBookToLibrary(title, author, pages, read) {
 
 function displayBooks() {
   const container = document.querySelector(".library");
-  container.innerHTML = "";
 
   myLibrary.forEach(book => {
     const card = document.createElement("div");
+    const bookTitle = document.createElement("h3");
+    const bookAuthor = document.createElement("p");
+    const bookPages = document.createElement("p");
+    const bookRead = document.createElement("p");
+    const deleteBtn = document.createElement("button");
+    const deleteIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    const useElem = document.createElementNS("http://www.w3.org/2000/svg", "use");
+
     card.classList.add("card");
     card.dataset.id = book.id;
 
-    card.innerHTML = `
-      <h3>${book.title}</h3>
-      <p>Author: ${book.author}</p>
-      <p>Pages: ${book.pages}</p>
-      <p>Read: ${book.read}</p>
-    `;
+    card.appendChild(bookTitle);
+    card.appendChild(bookAuthor);
+    card.appendChild(bookPages);
+    card.appendChild(bookRead);
+    card.appendChild(deleteBtn);
+
+    bookTitle.textContent = book.title;
+    bookAuthor.textContent = book.author;
+    bookPages.textContent = book.pages;
+    bookRead.textContent = book.read;
+    deleteBtn.classList.add("delete-btn");
+
+    deleteBtn.appendChild(deleteIcon);
+    deleteIcon.appendChild(useElem);
+
+    deleteIcon.classList.add("delete-icon");
+    useElem.setAttribute("href", "./svg/feather-sprite.svg#trash-2");
 
     container.appendChild(card);
   });
@@ -53,3 +71,13 @@ form.addEventListener("submit", (event) => {
 });
 
 displayBooks();
+
+
+const deleteCard = document.querySelector(".delete-btn");
+
+deleteCard.forEach( el => {
+    el.addEventListener("click", e =>{               
+        e.parentElement.remove();
+      });
+    });
+
