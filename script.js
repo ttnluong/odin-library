@@ -1,5 +1,6 @@
 const myLibrary = [];
 
+// constructor for books
 function Book(title, author, pages, read) {
     this.id = crypto.randomUUID();
     this.title = title;
@@ -8,13 +9,16 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
+// store new book object into the array
 function addBookToLibrary(title, author, pages, read) {
     const book = new Book(title, author, pages, read);
     myLibrary.push(book);
 }
 
+// loops through array and displays each book on the page
 function displayBooks() {
   const container = document.querySelector(".library");
+  container.innerHTML = "";
 
   myLibrary.forEach(book => {
     const card = document.createElement("div");
@@ -47,18 +51,22 @@ function displayBooks() {
     deleteIcon.classList.add("delete-icon");
     useElem.setAttribute("href", "./svg/feather-sprite.svg#trash-2");
 
+    // attach event listener to each card's delete button
+    card.querySelector(".delete-btn").addEventListener("click", (e) => {
+        const bookId = e.target.closest(".card").dataset.id;
+        const findBook = myLibrary.findIndex(element => element.id === bookId)
+        myLibrary.splice(findBook, 1);
+        displayBooks(); // re-render instead of manually removing card
+  });
+
     container.appendChild(card);
   });
 }
 
-addBookToLibrary("The Hobbit", "Tolkien", 310, "Yes");
-addBookToLibrary("1984", "Orwell", 328, "No");
-addBookToLibrary("Dune", "Herbert", 412, "Yes");
+// get book details from user form input, add book to library
+const addBook = document.getElementById("form");
 
-
-const form = document.getElementById("form");
-
-form.addEventListener("submit", (event) => {
+addBook.addEventListener("submit", (event) => {
     event.preventDefault();
     const title = document.getElementById("title").value;
     const author = document.getElementById("author").value;
@@ -70,14 +78,9 @@ form.addEventListener("submit", (event) => {
     form.reset();
 });
 
+// display examples
+addBookToLibrary("The Hobbit", "Tolkien", 310, "Yes");
+addBookToLibrary("1984", "Orwell", 328, "No");
+addBookToLibrary("Dune", "Herbert", 412, "Yes");
+
 displayBooks();
-
-
-const deleteCard = document.querySelector(".delete-btn");
-
-deleteCard.forEach( el => {
-    el.addEventListener("click", e =>{               
-        e.parentElement.remove();
-      });
-    });
-
