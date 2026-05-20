@@ -8,40 +8,51 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-     <form id="form" action="#" method="get">
-        <div class="form-section">
-             <div class="form-content">
-                <label for="title">Title</label>
-                <input type="text" id="title" name="title" required>
+    <header>
+        <h1>My Library</h1>
+        <p>A simple library</p>
+    </header>
+    <main class="library">
+    </main>
+    <aside>
+        <section class="stats">
+            <p id="stat-total"></p>
+            <p id="stat-read"></p>
+            <p id="stat-still-reading"></p>
+            <p id="stat-not-read"></p>
+        </section>
+        <form id="form" action="#" method="get">
+            <div class="form-section">
+                <div class="form-content">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                <div class="form-content">
+                    <label for="author">Author</label>
+                        <input type="text" id="author" name="author" value="">
+                </div>
+                <div class="form-content">
+                    <label for="pages">Number of pages</label>
+                    <input type="number" id="pages" name="pages" value="">
+                </div>
+                <div class="form-content">
+                    <label for="read">Read</label>
+                    <input type="radio" id="read" name="read" value="Read">
+                    <label for="read">Read</label>
+                    <input type="radio" id="still-reading" name="read" value="Still reading">
+                    <label for="still-reading">Still reading</label>
+                    <input type="radio" id="not-read" name="read" value="Not read">
+                    <label for="not-read">Not read</label>
+                </div>
+                <div class="add-book-button">
+                    <button type="submit" id="submit">Add book</button>
+                </div>
+                <div class="reset-form-button">
+                    <button type="reset">Reset</button>
+                </div>
             </div>
-            <div class="form-content">
-                <label for="author">Author</label>
-                    <input type="text" id="author" name="author" value="">
-            </div>
-            <div class="form-content">
-                <label for="pages">Number of pages</label>
-                <input type="number" id="pages" name="pages" value="">
-            </div>
-            <div class="form-content">
-                <label for="read">Read</label>
-                <input type="radio" id="read" name="read" value="Read">
-                <label for="read">Read</label>
-                <input type="radio" id="still-reading" name="read" value="Still reading">
-                <label for="still-reading">Still reading</label>
-                <input type="radio" id="not-read" name="read" value="Not read">
-                <label for="not-read">Not read</label>
-            </div>
-            <div class="add-book-button">
-                <button type="submit" id="submit">Add book</button>
-            </div>
-            <div class="reset-form-button">
-                <button type="reset">Reset</button>
-            </div>
-        </div>
-    </form>
-    <div class="library">
-        
-    </div>
+        </form>
+    </aside>
     <dialog id="delete-modal" popover>
         <p>Are you sure you want to delete this book?</p>
         <button popovertarget="delete-modal" popovertargetaction="hide">Cancel</button>
