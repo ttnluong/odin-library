@@ -193,7 +193,7 @@ aside {
     display: contents;
 }
 
-.stats {
+.stats-section {
     grid-area: stats;
     display: flex;
     justify-content: end;
@@ -203,9 +203,16 @@ aside {
     background-color: var(--c-bg-aside);
 }
 
-ol {
+.stats-wrapper {
+    display: flex;
+    flex-direction: column;
     flex-basis: 320px;
     min-width: 260px;
+}
+
+.stats-wrapper hr {
+    margin-top: auto;
+    border-top: 1px solid var(--c-background);
 }
 
 li {
@@ -213,6 +220,8 @@ li {
     text-align: end;
     font-size: 0.8125rem;
 }
+
+/* form */
 
 form {
     grid-area: form;
@@ -224,19 +233,19 @@ form {
     background-color: var(--c-bg-aside);
 }
 
-.form-section {
-    flex-basis: 320px;
-    min-width: 260px;
+.form-wrapper {
     display: flex;
     flex-direction: column;
+    flex-basis: 320px;
+    min-width: 260px;
 }
 
-.form-section h2 {
+.form-wrapper h2 {
     padding: 20px 0px;
     font-size: 1.25rem;
 }
 
-.form-section hr {
+.form-wrapper hr {
     border-top: 1px solid var(--c-background);
 }
 
