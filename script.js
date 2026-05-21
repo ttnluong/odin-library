@@ -117,14 +117,27 @@ Book.prototype.toggleRead = function () {
     } else {
         this.read = "Read";
     }
-    
+
     updateStatsBooks();
 }
 
 // display examples
-addBookToLibrary("The Hobbit", "Tolkien", 310, "Read");
-addBookToLibrary("1984", "Orwell", 328, "Not read");
-addBookToLibrary("Dune is jaf lkentkl asjfhasj itewqjhoi asnflknl", "Herbert", 412, "Read");
+addBookToLibrary("The Darkroom of Damocles", "Willem Frederik Hermans", 416, "Read");
+addBookToLibrary("The Fall of Public Man", "Richard Sennett", 512, "Still reading");
+addBookToLibrary("1984", "George Orwell", 328, "Read");
+addBookToLibrary("The Dispossessed: An Ambiguous Utopia", "Ursula K. Le Guin", 387, "Not read");
+addBookToLibrary("Labyrinths: Selected Stories & Other Writings", "Jorge Luis Borges", 260, "Not read");
+addBookToLibrary("Peace Is Every Step", "Thich Nhat Hanh", 157, "Still reading");
+addBookToLibrary("The Complete Stories", "Flannery O'Connor", 555, "Not read");
+addBookToLibrary("Being and Time", "Martin Heidegger", 589, "Not read");
+addBookToLibrary("The Discovery of Heaven", "Harry Mulisch", 730, "Read");
+addBookToLibrary("The Philosophy of Dress", "Oscar Wilde", 7, "Read");
+addBookToLibrary("The Philosophy of Dress", "Oscar Wilde", 7, "Read");
+addBookToLibrary("The Philosophy of Dress", "Oscar Wilde", 7, "Read");
+addBookToLibrary("The Philosophy of Dress", "Oscar Wilde", 7, "Read");
+addBookToLibrary("The Philosophy of Dress", "Oscar Wilde", 7, "Read");
+addBookToLibrary("The Philosophy of Dress", "Oscar Wilde", 7, "Read");
+addBookToLibrary("The Philosophy of Dress", "Oscar Wilde", 7, "Read");
 
 displayBooks();
 

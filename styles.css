@@ -117,13 +117,13 @@ body {
 
 header {
     grid-area: header;
+    position: sticky;
+    top: 0;
+    background-color: var(--c-background);
 }
 
 .header-text {
-    padding-top: 120px;
-    padding-right: calc(0px + 2vw);
-    padding-left: calc(0px + 2vw);
-    padding-bottom: calc(0px + 2vw);
+    padding: 120px 36px 36px;
 }
 
 header h1 {
@@ -140,8 +140,7 @@ header p {
 
 header hr {
     max-width: 900px;
-    margin-right: calc(0px + 2vw);
-    margin-left: calc(0px + 2vw);
+    margin: 0px 36px;
     border-top: 1px solid var(--c-grey-400);
 }
 
@@ -152,9 +151,7 @@ header hr {
     grid-area: library;
     display: grid;
     grid-auto-rows: min-content;
-    padding-top: calc(0px + 2vw);
-    padding-right: calc(0px + 2vw);
-    padding-left: calc(0px + 2vw);
+    padding: 36px 36px 100px;
 }
 
 .card {
@@ -200,12 +197,12 @@ aside {
 }
 
 .stats-section {
+    position: sticky;
+    top: 0;
     grid-area: stats;
     display: flex;
     justify-content: end;
-    padding-top: 120px;
-    padding-right: calc(0px + 2vw);
-    padding-left: calc(0px + 2vw);
+    padding: 120px 36px 0px;
     background-color: var(--c-bg-aside);
 }
 
@@ -230,7 +227,7 @@ li {
 li h4 {
     display: inline;
     position: relative;
-    top: -2px;
+    top: -1px;
     margin-right: 6px;
     font-size: 1.125rem;
     line-height: 1;
@@ -247,13 +244,14 @@ form {
     grid-area: form;
     display: flex;
     justify-content: end;
-    padding-top: calc(0px + 2vw);
-    padding-right: calc(0px + 2vw);
-    padding-left: calc(0px + 2vw);
+    padding: 36px 36px 0px;
     background-color: var(--c-bg-aside);
 }
 
 .form-wrapper {
+    position: sticky;
+    top: 278px;
+    align-self: start;
     display: flex;
     flex-direction: column;
     flex-basis: 320px;
