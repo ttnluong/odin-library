@@ -97,8 +97,8 @@ const addBook = document.getElementById("form");
 addBook.addEventListener("submit", (event) => {
     event.preventDefault();
     const title = document.getElementById("title").value;
-    const author = document.getElementById("author").value;
-    const pages = document.getElementById("pages").value;
+    const author = document.getElementById("author")?.value || "-";
+    const pages = document.getElementById("pages")?.value || "#";
     const read = document.querySelector("input[name='read']:checked")?.value || "No status";
 
     addBookToLibrary(title, author, pages, read);
@@ -131,12 +131,6 @@ addBookToLibrary("Peace Is Every Step", "Thich Nhat Hanh", 157, "Still reading")
 addBookToLibrary("The Complete Stories", "Flannery O'Connor", 555, "Not read");
 addBookToLibrary("Being and Time", "Martin Heidegger", 589, "Not read");
 addBookToLibrary("The Discovery of Heaven", "Harry Mulisch", 730, "Read");
-addBookToLibrary("The Philosophy of Dress", "Oscar Wilde", 7, "Read");
-addBookToLibrary("The Philosophy of Dress", "Oscar Wilde", 7, "Read");
-addBookToLibrary("The Philosophy of Dress", "Oscar Wilde", 7, "Read");
-addBookToLibrary("The Philosophy of Dress", "Oscar Wilde", 7, "Read");
-addBookToLibrary("The Philosophy of Dress", "Oscar Wilde", 7, "Read");
-addBookToLibrary("The Philosophy of Dress", "Oscar Wilde", 7, "Read");
 addBookToLibrary("The Philosophy of Dress", "Oscar Wilde", 7, "Read");
 
 displayBooks();
