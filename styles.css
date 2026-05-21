@@ -90,6 +90,11 @@ button {
     cursor: pointer;
 }
 
+select,
+::picker(select) {
+  appearance: base-select;
+}
+
 hr {
     border: none;
 }
@@ -166,7 +171,7 @@ header hr {
     max-width: 900px;
     min-width: 600px;
     display: grid;
-    grid-template-columns: 1.5fr 1fr 0.3fr 0.5fr 0.18fr;
+    grid-template-columns: 1.5fr 0.9fr 0.3fr 0.52fr 0.18fr;
     align-items: center;
     gap: 20px;
     padding: 20px 0px;
@@ -182,20 +187,53 @@ header hr {
     color: var(--c-text-muted);
 }
 
-.read-btn {
-    padding: 4px;
+/* dropdown menu select read status */
+
+.select-read-status {
+    padding: 4px 6px;
     font-size: 0.8125rem;
     text-transform: uppercase;
     border: 1px solid var(--c-grey-400);
-    background-color: transparent;
+    border-radius: 0;
     color: var(--c-grey);
+    transition: all 0.15s ease-in-out;
+    cursor: pointer;
+}
+
+.select-read-status:hover {
+    border: 1px solid var(--c-black);
+    color: var(--c-black);
+    background-color: transparent;
+}
+
+.select-read-status::picker-icon {
+    content: "⌵";
+    margin-top: -2px;
+    color: var(--c-grey-600);
+    transition: rotate 0.4s;
+}
+
+.select-read-status:open::picker-icon {
+    rotate: 180deg;
+}
+
+.select-read-status option {
+    padding: 2px 6px;
+    background-color: var(--c-bg-primary);
     transition: all 0.15s ease-in-out;
 }
 
-.read-btn:hover {
-    border: 1px solid var(--c-black);
-    color: var(--c-black);
+.select-read-status option:hover {
+    background-color: var(--c-bg-secondary);
 }
+
+.select-read-status option::checkmark {
+    order: 1;
+    margin-left: auto;
+    content:"◀";
+}
+
+/* delete button */
 
 .modal-delete-btn {
     display: flex;
