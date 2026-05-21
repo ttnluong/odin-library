@@ -10,22 +10,26 @@
 <body>
     <div class="container">
         <header>
-            <h1>My Library</h1>
-            <p>A simple library</p>
+            <div class="header-text">
+                <h1>My Library</h1>
+                <p>Your personal shelf, a collection of books</p>
+            </div>
+            <hr>
         </header>
         <main class="library">
         </main>
         <aside>
-        <section class="stats">
-            <ol>
-                <li id="stat-total"></li>
-                <li id="stat-read"></li>
-                <li id="stat-still-reading"></li>
-                <li id="stat-not-read"></li>
-            </ol>
-        </section>
+            <section class="stats">
+                <ol>
+                    <li id="stat-total"></li>
+                    <li id="stat-read"></li>
+                    <li id="stat-still-reading"></li>
+                    <li id="stat-not-read"></li>
+                </ol>
+            </section>
             <form id="form" action="#" method="get">
                 <div class="form-section">
+                    <h2>Add new book</h2>
                     <div class="form-content">
                         <label for="title">Title</label>
                         <input type="text" id="title" name="title" required>
@@ -40,18 +44,22 @@
                     </div>
                     <div class="form-content">
                         <label for="read">Read</label>
-                        <input type="radio" id="read" name="read" value="Read">
-                        <label for="read">Read</label>
-                        <input type="radio" id="still-reading" name="read" value="Still reading">
-                        <label for="still-reading">Still reading</label>
-                        <input type="radio" id="not-read" name="read" value="Not read">
-                        <label for="not-read">Not read</label>
+                        <div class="radio-buttons">
+                            <input type="radio" id="read" name="read" value="Read">
+                            <label for="read">Read</label>
+                            <input type="radio" id="still-reading" name="read" value="Still reading">
+                            <label for="still-reading">Still reading</label>
+                            <input type="radio" id="not-read" name="read" value="Not read">
+                            <label for="not-read">Not read</label>
+                        </div>
                     </div>
-                    <div class="add-book-button">
-                        <button type="submit" id="submit">Add book</button>
-                    </div>
-                    <div class="reset-form-button">
-                        <button type="reset">Reset</button>
+                    <div class="form-buttons">
+                        <div class="reset-form-button">
+                            <button type="reset">Reset</button>
+                        </div>
+                        <div class="add-book-button">
+                            <button type="submit" id="submit">Add book</button>
+                        </div>
                     </div>
                 </div>
             </form>
