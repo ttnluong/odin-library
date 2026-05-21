@@ -84,6 +84,10 @@ button {
     cursor: pointer;
 }
 
+hr {
+    border: none;
+}
+
 /* BASE
 ====================================================== */
 
@@ -167,6 +171,11 @@ header hr {
     font-size: 1.25rem;
 }
 
+.modal-delete-btn {
+    background: none;
+    border: none;
+}
+
 .delete-icon {
     width: 20px;
     height: 20px;
@@ -199,6 +208,12 @@ ol {
     min-width: 260px;
 }
 
+li {
+    text-transform: uppercase;
+    text-align: end;
+    font-size: 0.8125rem;
+}
+
 form {
     grid-area: form;
     display: flex;
@@ -212,6 +227,8 @@ form {
 .form-section {
     flex-basis: 320px;
     min-width: 260px;
+    display: flex;
+    flex-direction: column;
 }
 
 .form-section h2 {
@@ -219,6 +236,37 @@ form {
     font-size: 1.25rem;
 }
 
+.form-section hr {
+    border-top: 1px solid var(--c-background);
+}
+
 .form-content {
     display: grid;
+    margin-top: 20px;
+}
+
+label {
+    text-transform: uppercase;
+    font-size: 0.8125rem;
+}
+
+input {
+    background: linear-gradient(to bottom, #00000005, transparent);
+    color: var(--c-input-text);
+    padding: 6px 10px 6px;
+    border: 1px solid var(--c-grey-500);
+    box-shadow: inset 0px 3px 3px -1px #0000000a;
+    border-radius: 2px;
+    transition: border 0.15s ease-in-out;
+    font-weight: 400;
+}
+
+.add-book-button {
+    text-align: end;
+    margin-top: 20px;
+}
+
+.add-book-button button {
+    padding: 6px 14px;
+    text-transform: uppercase;
 }
