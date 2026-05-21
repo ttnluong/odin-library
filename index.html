@@ -21,7 +21,7 @@
         <aside>
             <section class="stats-section">
                 <div class="stats-wrapper">
-                    <ol>
+                    <ol><!--  -->
                         <li><h4 id="stat-total"></h4><p>Books total</p></li>
                         <li><h4 id="stat-read"></h4><p>Read</p></li>
                         <li><h4 id="stat-still-reading"></h4><p>Still reading</p></li>
@@ -63,10 +63,13 @@
                 </div>
             </form>
         </aside>
-        <dialog id="delete-modal" popover>
-            <p>Are you sure you want to delete this book?</p>
-            <button popovertarget="delete-modal" popovertargetaction="hide">Cancel</button>
-            <button class="delete-btn" popovertarget="delete-modal" popovertargetaction="hide" uk-toggle="target: library.card">Delete</button>
-        </dialog>
     </div>
+    <dialog class="delete-modal" id="delete-modal" popover>
+        <div class="modal-content">
+            <h2>Delete book</h2>
+            <p>Are you sure you want to delete this book?</p>
+            <button class="cancel-btn" popovertarget="delete-modal" popovertargetaction="hide">Cancel</button>
+            <button class="delete-btn" popovertarget="delete-modal" popovertargetaction="hide" uk-toggle="target: library.card">Delete</button>
+        </div>
+    </dialog>
 </body>
