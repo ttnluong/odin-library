@@ -141,6 +141,7 @@ header h1 {
 }
 
 header p {
+    margin-top: -5px;
     font-size: 1.25rem;
     color: var(--c-text-muted);
 }
@@ -163,6 +164,7 @@ header hr {
 
 .card {
     max-width: 900px;
+    min-width: 600px;
     display: grid;
     grid-template-columns: 1.5fr 1fr 0.3fr 0.5fr 0.18fr;
     align-items: center;
@@ -278,7 +280,7 @@ form {
 
 .form-wrapper {
     position: sticky;
-    top: 278px;
+    top: 274px;
     align-self: start;
     display: flex;
     flex-direction: column;
