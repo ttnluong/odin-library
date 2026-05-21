@@ -164,7 +164,7 @@ header hr {
 .card {
     max-width: 900px;
     display: grid;
-    grid-template-columns: 1.5fr 1fr 0.3fr 0.5fr 0.2fr;
+    grid-template-columns: 1.5fr 1fr 0.3fr 0.5fr 0.18fr;
     align-items: center;
     gap: 20px;
     padding: 20px 0px;
@@ -180,8 +180,23 @@ header hr {
     color: var(--c-text-muted);
 }
 
+.read-btn {
+    padding: 4px;
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    border: 1px solid var(--c-grey-400);
+    background-color: transparent;
+    color: var(--c-grey);
+}
+
+.read-btn:hover {
+    border: 1px solid var(--c-black);
+    color: var(--c-black);
+}
+
 .modal-delete-btn {
     display: flex;
+    justify-content: end;
     background: none;
     border: none;
 }
@@ -206,6 +221,8 @@ header hr {
 aside {
     display: contents;
 }
+
+/* STATISTICS BOOKS */
 
 .stats-section {
     position: sticky;
@@ -249,7 +266,7 @@ li p {
     color: var(--c-text-muted);
 }
 
-/* form */
+/* ADD BOOK FORM */
 
 form {
     grid-area: form;
