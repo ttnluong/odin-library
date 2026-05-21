@@ -40,6 +40,7 @@
 ====================================================== */
 
 :root { 
+    --c-white: #fff;
     --c-black: #0c0c0c;
     --c-grey: #757575;
     --c-red: #cf6469;
@@ -81,6 +82,10 @@ ul, ol {
     list-style: none;
 }
 
+input, button {
+    font: inherit;
+}
+
 button {
     cursor: pointer;
 }
@@ -99,6 +104,7 @@ h1, h2, h3, h4 {
 body {
     height: 100vh;
     font-family: "Gill Sans", sans-serif;
+    font-size: 1rem;
     line-height: 1.4;
     background-color: var(--c-bg-primary);
     color: var(--c-black);
@@ -170,12 +176,12 @@ header hr {
 }
 
 .card p {
-    padding-top: 8px;
-    line-height: 1;
+    margin-top: 3px;
     color: var(--c-text-muted);
 }
 
 .modal-delete-btn {
+    display: flex;
     background: none;
     border: none;
 }
@@ -183,11 +189,15 @@ header hr {
 .delete-icon {
     width: 20px;
     height: 20px;
-    stroke: currentColor;
-    stroke-width: 1.5;
+    stroke: var(--c-grey);
+    stroke-width: 1;
     stroke-linecap: round;
     stroke-linejoin: round;
     fill: none;
+}
+
+.delete-icon:hover {
+    stroke: var(--c-black);
 }
 
 /* ASIDE
@@ -280,13 +290,22 @@ label {
 
 input {
     background: linear-gradient(to bottom, #00000005, transparent);
-    color: var(--c-input-text);
-    padding: 6px 10px 6px;
+    padding: 4px 10px;
     border: 1px solid var(--c-grey-500);
     box-shadow: inset 0px 3px 3px -1px #0000000a;
     border-radius: 2px;
     transition: border 0.15s ease-in-out;
     font-weight: 400;
+}
+
+input:hover {
+    border: 1px solid var(--c-grey-600);
+}
+
+input:focus {
+    outline: none;
+    border: 1px solid var(--c-grey-600);
+    box-shadow: inset 0px 0px 0px 0.3px var(--c-grey-600);
 }
 
 .add-book-button {
@@ -296,7 +315,15 @@ input {
 
 .add-book-button button {
     padding: 6px 14px;
+    border: none;
+    font-size: 0.8125rem;
     text-transform: uppercase;
+    background-color: var(--c-black);
+    color: var(--c-bg-secondary);
+}
+
+.add-book-button button:hover {
+    background-color: var(--c-grey);
 }
 
 /* MODAL DELETE CONFIRMATION
