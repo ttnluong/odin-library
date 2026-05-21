@@ -189,6 +189,7 @@ header hr {
     border: 1px solid var(--c-grey-400);
     background-color: transparent;
     color: var(--c-grey);
+    transition: all 0.15s ease-in-out;
 }
 
 .read-btn:hover {
@@ -211,6 +212,7 @@ header hr {
     stroke-linecap: round;
     stroke-linejoin: round;
     fill: none;
+    transition: all 0.15s ease-in-out;
 }
 
 .delete-icon:hover {
@@ -332,6 +334,7 @@ input[type="radio"] {
     height: 20px;
     background-color: var(--c-bg-secondary);
     cursor: pointer;
+    transition: border 0.15s ease-in-out;
 }
 
 input[type="radio"]:hover+label {
@@ -363,6 +366,7 @@ input[type="radio"]:checked+label {
     font-size: 0.875rem;
     text-transform: none;
     color: var(--c-grey);
+    transition: all 0.15s ease-in-out;
 }
 
 .add-book-button {
@@ -377,6 +381,7 @@ input[type="radio"]:checked+label {
     text-transform: uppercase;
     background-color: var(--c-black);
     color: var(--c-bg-secondary);
+    transition: all 0.15s ease-in-out;
 }
 
 .add-book-button button:hover {
