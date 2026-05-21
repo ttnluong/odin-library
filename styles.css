@@ -91,7 +91,7 @@ hr {
 /* BASE
 ====================================================== */
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
     font-family: "Cormorant Garamond Variable", serif;
 }
 
@@ -135,13 +135,14 @@ header h1 {
 
 header p {
     font-size: 1.25rem;
+    color: var(--c-text-muted);
 }
 
 header hr {
     max-width: 900px;
     margin-right: calc(0px + 2vw);
     margin-left: calc(0px + 2vw);
-    border-top: 1px solid var(--c-grey-500);
+    border-top: 1px solid var(--c-grey-400);
 }
 
 /* MAIN
@@ -163,12 +164,17 @@ header hr {
     align-items: center;
     gap: 20px;
     padding: 20px 0px;
-    border-bottom: 1px solid var(--c-grey-500);
-    line-height: 1.2;
+    border-bottom: 1px solid var(--c-grey-400);
 }
 
 .card h3 {
     font-size: 1.25rem;
+}
+
+.card p {
+    padding-top: 8px;
+    line-height: 1;
+    color: var(--c-text-muted);
 }
 
 .modal-delete-btn {
@@ -219,6 +225,20 @@ li {
     text-transform: uppercase;
     text-align: end;
     font-size: 0.8125rem;
+}
+
+li h4 {
+    display: inline;
+    position: relative;
+    top: -2px;
+    margin-right: 6px;
+    font-size: 1.125rem;
+    line-height: 1;
+}
+
+li p {
+    display: inline;
+    color: var(--c-text-muted);
 }
 
 /* form */

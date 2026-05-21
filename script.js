@@ -50,7 +50,7 @@ function displayBooks() {
 
         bookTitle.textContent = book.title;
         bookAuthor.textContent = book.author;
-        bookPages.textContent = book.pages;
+        bookPages.textContent = `${book.pages} p.`;
         bookReadBtn.textContent = book.read;
         bookReadBtn.classList.add("read-btn");
         modalDeleteBtn.classList.add("modal-delete-btn");
@@ -87,6 +87,7 @@ deleteBtn.addEventListener("click", (e) => {
         const findBook = myLibrary.findIndex(element => element.id === selectedBookId)
         myLibrary.splice(findBook, 1);
         displayBooks(); // re-render instead of manually removing card
+        updateStatsBooks();
     });
 
 
@@ -102,6 +103,7 @@ addBook.addEventListener("submit", (event) => {
 
     addBookToLibrary(title, author, pages, read);
     displayBooks();
+    updateStatsBooks();
     form.reset();
 });
 
@@ -115,12 +117,14 @@ Book.prototype.toggleRead = function () {
     } else {
         this.read = "Read";
     }
+    
+    updateStatsBooks();
 }
 
 // display examples
 addBookToLibrary("The Hobbit", "Tolkien", 310, "Read");
 addBookToLibrary("1984", "Orwell", 328, "Not read");
-addBookToLibrary("Dune", "Herbert", 412, "Read");
+addBookToLibrary("Dune is jaf lkentkl asjfhasj itewqjhoi asnflknl", "Herbert", 412, "Read");
 
 displayBooks();
 
@@ -132,15 +136,18 @@ const statsRead = document.getElementById("stat-read");
 const statsStillReading = document.getElementById("stat-still-reading");
 const statsNotRead = document.getElementById("stat-not-read");
 
-let statRead = myLibrary.filter(book => book.read === "Read");
-let statStillReading = myLibrary.filter(book => book.read === "Still reading");
-let statNotRead = myLibrary.filter(book => book.read === "Not read");
+function updateStatsBooks() {
+    const statRead = myLibrary.filter(book => book.read === "Read");
+    const statStillReading = myLibrary.filter(book => book.read === "Still reading");
+    const statNotRead = myLibrary.filter(book => book.read === "Not read");
 
-statsTotal.textContent = `Total books: ${myLibrary.length}`;
-statsRead.textContent = `Read: ${statRead.length}`;
-statsStillReading.textContent = `Still reading: ${statStillReading.length}`;
-statsNotRead.textContent = `Not read: ${statNotRead.length}`;
+    statsTotal.textContent = myLibrary.length;
+    statsRead.textContent = statRead.length;
+    statsStillReading.textContent = statStillReading.length;
+    statsNotRead.textContent = statNotRead.length;
+}
 
+updateStatsBooks();
 
 // TO DO
 
