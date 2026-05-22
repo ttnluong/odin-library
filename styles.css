@@ -120,10 +120,17 @@ header {
 }
 
 .header-text {
-    padding: 120px 36px 36px;
+    max-width: 900px;
+    display: grid;
+    grid-template: auto auto / 1fr 1fr;
+    grid-template-areas: 
+    "title title"
+    "subtitle filters";
+    margin: 120px 36px 36px;
 }
 
 header h1 {
+    grid-area: title;
     position: relative;
     top: -12px;
     font-size: 3rem;
@@ -131,6 +138,7 @@ header h1 {
 }
 
 header p {
+    grid-area: subtitle;
     margin-top: -5px;
     font-size: 1.25rem;
     color: var(--c-text-muted);
@@ -140,6 +148,14 @@ header hr {
     max-width: 900px;
     margin: 0px 36px;
     border-top: 1px solid var(--c-grey-faint);
+}
+
+header .filters {
+    grid-area: filters;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    gap: 10px;
 }
 
 /* MAIN
@@ -411,6 +427,7 @@ input[type="radio"]:checked+label {
     padding: 24px 36px 36px 36px;
     background-color: var(--c-bg-secondary);
 }
+
 .edit-book-buttons-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -450,6 +467,21 @@ input[type="radio"]:checked+label {
     backdrop-filter: blur(0.3px);
 }
 
+.modal button {
+    padding: 6px;
+    text-transform: uppercase;
+    font-size: 0.8125rem;
+}
+
+.cancel-btn {
+    border: 1px solid var(--c-grey-light);
+    background-color: transparent;
+}
+
+.cancel-btn:hover {
+    border: 1px solid var(--c-black);
+}
+
 /* EDIT BOOK DETAILS MODAL */
 
 /* check form styling for more */
@@ -481,21 +513,6 @@ input[type="radio"]:checked+label {
     grid-area: text;
     margin-bottom: 10px;
     color: var(--c-text-muted);
-}
-
-.modal button {
-    padding: 6px;
-    text-transform: uppercase;
-    font-size: 0.8125rem;
-}
-
-.cancel-btn {
-    border: 1px solid var(--c-grey-light);
-    background-color: transparent;
-}
-
-.cancel-btn:hover {
-    border: 1px solid var(--c-black);
 }
 
 .delete-btn {
