@@ -40,27 +40,17 @@
 ====================================================== */
 
 :root { 
-    --c-white: #fff;
-    --c-black: #0c0c0c;
-    --c-grey: #757575;
-    --c-red: #cf6469;
+    --c-black: hsl(0 0% 10%);
+    --c-grey-default: hsl(0 4% 46%);
+    --c-grey-light: hsl(0 4% 62%);
+    --c-grey-faint: hsl(0 4% 74%);
+    --c-red: hsl(357 53% 60%);
 
-    --c-grey-50: #fafafa;
-    --c-grey-100: #f5f5f5;
-    --c-grey-200: #eeeeee;
-    --c-grey-300: #e0e0e0;
-    --c-grey-400: #bdbdbd;
-    --c-grey-500: #9e9e9e;
-    --c-grey-600: #757575;
-    --c-grey-700: #616161;
-    --c-grey-800: #424242;
-    --c-grey-900: #212121;
+    --c-bg-primary: hsl(37 40% 94%);
+    --c-bg-secondary: hsl(35 32% 86%);
 
-    --c-bg-primary: #f5f0e8;
-    --c-bg-secondary: #e7ded1;
-
-    --c-text-default: #0c0c0c;
-    --c-text-muted: #757575;
+    --c-text-default: var(--c-black);
+    --c-text-muted: var(--c-grey-default);
 }
 
 /* NORMALISE
@@ -149,7 +139,7 @@ header p {
 header hr {
     max-width: 900px;
     margin: 0px 36px;
-    border-top: 1px solid var(--c-grey-400);
+    border-top: 1px solid var(--c-grey-faint);
 }
 
 /* MAIN
@@ -170,7 +160,7 @@ header hr {
     align-items: center;
     gap: 20px;
     padding: 20px 0px;
-    border-bottom: 1px solid var(--c-grey-400);
+    border-bottom: 1px solid var(--c-grey-faint);
 }
 
 .card h3 {
@@ -186,7 +176,7 @@ header hr {
 
 select,
 ::picker(select) {
-    appearance: base-select;
+    appearance: base-select;  /* not supported by firefox and safari */
 }
 
 .select-read-status {
@@ -194,10 +184,10 @@ select,
     font-family: "Gill Sans";
     font-size: 0.8125rem;
     text-transform: uppercase;
-    border: 1px solid var(--c-grey-400);
+    border: 1px solid var(--c-grey-faint);
     border-radius: 0;
     background-color: var(--c-bg-primary);
-    color: var(--c-grey);
+    color: var(--c-text-muted);
     transition: all 0.15s ease-in-out;
     cursor: pointer;
     size: 3;
@@ -205,14 +195,14 @@ select,
 
 .select-read-status:hover {
     border: 1px solid var(--c-black);
-    color: var(--c-black);
+    color: var(--c-text-default);
     background-color: transparent;
 }
 
 .select-read-status::picker-icon {
     content: "⌵";
     margin-top: -2px;
-    color: var(--c-grey-600);
+    color: var(--c-grey-default);
     transition: rotate 0.4s;
 }
 
@@ -236,7 +226,7 @@ select,
     content:"◀";
 }
 
-/* open modal edit and delete button */
+/* buttons: open modal edit book and delete confirmation */
 
 .modal-btn {
     display: flex;
@@ -248,7 +238,7 @@ select,
 .card-icon {
     width: 20px;
     height: 20px;
-    stroke: var(--c-grey);
+    stroke: var(--c-grey-default);
     stroke-width: 1;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -311,7 +301,7 @@ li p {
     color: var(--c-text-muted);
 }
 
-/* ADD BOOK FORM */
+/* ADD BOOK + EDIT BOOK(MODAL) FORM */
 
 form {
     grid-area: form;
@@ -353,7 +343,7 @@ label {
 input {
     background: linear-gradient(to bottom, #00000005, transparent);
     padding: 4px 10px;
-    border: 1px solid var(--c-grey-500);
+    border: 1px solid var(--c-grey-light);
     box-shadow: inset 0px 3px 3px -1px #0000000a;
     border-radius: 2px;
     transition: border 0.15s ease-in-out;
@@ -361,13 +351,13 @@ input {
 }
 
 input:hover {
-    border: 1px solid var(--c-grey-600);
+    border: 1px solid var(--c-grey-default);
 }
 
 input:focus {
     outline: none;
-    border: 1px solid var(--c-grey-600);
-    box-shadow: inset 0px 0px 0px 0.3px var(--c-grey-600);
+    border: 1px solid var(--c-grey-default);
+    box-shadow: inset 0px 0px 0px 0.3px var(--c-grey-default);
 }
 
 input[type="radio"] {
@@ -406,16 +396,29 @@ input[type="radio"]:checked+label {
     margin-right: 6px;
     font-size: 0.875rem;
     text-transform: none;
-    color: var(--c-grey);
+    color: var(--c-text-muted);
     transition: all 0.15s ease-in-out;
 }
 
 .add-book-button {
     text-align: end;
-    margin-top: 20px;
+    margin-top: 24px;
 }
 
-.add-book-button button {
+.edit-book-buttons {
+    display: flex;
+    justify-content: end;
+    padding: 24px 36px 36px 36px;
+    background-color: var(--c-bg-secondary);
+}
+.edit-book-buttons-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.add-book-button #submit,
+.edit-book-buttons #submit {
     padding: 6px 14px;
     border: none;
     font-size: 0.8125rem;
@@ -425,7 +428,8 @@ input[type="radio"]:checked+label {
     transition: all 0.15s ease-in-out;
 }
 
-.add-book-button button:hover {
+.add-book-button #sumbit:hover,
+.edit-book-buttons #submit:hover {
     box-shadow: inset 0 0 0 1px var(--c-black);
     background-color: var(--c-bg-secondary);
     color: var(--c-black);
@@ -448,9 +452,10 @@ input[type="radio"]:checked+label {
 
 /* EDIT BOOK DETAILS MODAL */
 
+/* check form styling for more */
+
 #edit-form .form-wrapper {
     margin-top: -30px;
-    margin-bottom: 30px;
 }
 
 /* DELETE BOOK CONFIRMATION MODAL */
@@ -478,14 +483,14 @@ input[type="radio"]:checked+label {
     color: var(--c-text-muted);
 }
 
-.delete-modal-content button {
+.modal button {
     padding: 6px;
     text-transform: uppercase;
     font-size: 0.8125rem;
 }
 
 .cancel-btn {
-    border: 1px solid var(--c-grey-500);
+    border: 1px solid var(--c-grey-light);
     background-color: transparent;
 }
 
@@ -500,5 +505,5 @@ input[type="radio"]:checked+label {
 }
 
 .delete-btn:hover {
-    background-color: #bf484e;
+    background-color: color-mix(in hsl shorter hue, var(--c-red), black 12%)
 }
