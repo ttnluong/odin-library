@@ -2,6 +2,9 @@
 
 const myLibrary = [];
 
+// track active filter
+let activeFilter = "All";
+
 // constructor for books
 function Book(title, author, pages, read) {
     this.id = crypto.randomUUID();
@@ -89,7 +92,7 @@ function createCard(book) {
 function displayBooks() {
     const container = document.querySelector(".library");
     container.innerHTML = "";
-    myLibrary.forEach(book => container.appendChild(createCard(book)));
+    getFilteredBooks().forEach(book => container.appendChild(createCard(book)));
 }
 
 // edit modal
@@ -132,7 +135,6 @@ addBook.addEventListener("submit", (event) => {
 });
 
 // edit book details from user form inputs, update book
-
 const editBook = document.getElementById("edit-form");
 
 editBook.addEventListener("submit", (e) => {
@@ -147,6 +149,18 @@ editBook.addEventListener("submit", (e) => {
     displayBooks();
     updateStatsBooks();
     document.getElementById("edit-modal").hidePopover();
+});
+
+// filter function
+function getFilteredBooks() {
+    if (activeFilter === "All") return myLibrary;
+    return myLibrary.filter(book => book.read === activeFilter);
+}
+
+document.querySelector(".filters").addEventListener("click", (e) => {
+    if (!e.target.matches("button")) return;
+    activeFilter = e.target.dataset.filter;
+    displayBooks();
 });
 
 

@@ -444,6 +444,8 @@ input[type="radio"]:checked+label {
     backdrop-filter: blur(0.3px);
 }
 
+/* EDIT BOOK DETAILS MODAL */
+
 #edit-form .form-wrapper {
     margin-top: -30px;
     margin-bottom: 30px;
