@@ -158,6 +158,23 @@ header .filters {
     gap: 10px;
 }
 
+.filter-btn {
+    background-color: transparent;
+    border: none;
+    color: var(--c-grey-default);
+    font-size: 0.9125rem;
+    transition: all 0.15s ease-in-out;
+}
+
+.filter-btn:hover {
+    color: var(--c-black);
+}
+
+.filter-btn.active {
+    color: var(--c-black);
+    text-decoration: underline;
+}
+
 /* MAIN
 ====================================================== */
 

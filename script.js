@@ -42,7 +42,8 @@ function createCard(book) {
         selectBookRead.classList.add("select-read-status");
         modalEditBtn.classList.add("modal-btn");
         modalDeleteBtn.classList.add("modal-btn");
-        modalEditBtn.setAttribute("popovertarget", "edit-modal");
+        modalEditBtn.setAttribute("command", "show-modal");
+        modalEditBtn.setAttribute("commandfor", "edit-modal");
         modalDeleteBtn.setAttribute("popovertarget", "delete-modal");
         editIcon.classList.add("card-icon");
         deleteIcon.classList.add("card-icon");
@@ -148,18 +149,37 @@ editBook.addEventListener("submit", (e) => {
 
     displayBooks();
     updateStatsBooks();
-    document.getElementById("edit-modal").hidePopover();
+    document.getElementById("edit-modal").close();
 });
 
-// filter function
+// FILTER
+
+// filter array, called by displayBooks()
 function getFilteredBooks() {
     if (activeFilter === "All") return myLibrary;
     return myLibrary.filter(book => book.read === activeFilter);
 }
 
-document.querySelector(".filters").addEventListener("click", (e) => {
+// store activeFilter -> call displayBooks(), add button class active for underline, toggle filter with double click
+const filterContainer = document.querySelector(".filters");
+const filterBtns = document.querySelectorAll(".filter-btn");
+
+filterContainer.addEventListener("click", (e) => {
     if (!e.target.matches("button")) return;
-    activeFilter = e.target.dataset.filter;
+
+    const isAll = e.target.dataset.filter === "All";
+    const isActive = e.target.classList.contains("active");
+
+    if (isActive && !isAll) {
+        filterBtns.forEach(b => b.classList.remove("active"));
+        document.querySelector("[data-filter='All']").classList.add("active");
+        activeFilter = "All";
+    } else {
+        filterBtns.forEach(b => b.classList.remove("active"));
+        e.target.classList.add("active");
+        activeFilter = e.target.dataset.filter;
+    }
+
     displayBooks();
 });
 
