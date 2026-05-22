@@ -90,11 +90,6 @@ button {
     cursor: pointer;
 }
 
-select,
-::picker(select) {
-  appearance: base-select;
-}
-
 hr {
     border: none;
 }
@@ -189,12 +184,19 @@ header hr {
 
 /* dropdown menu select read status */
 
+select,
+::picker(select) {
+    appearance: base-select;
+}
+
 .select-read-status {
-    padding: 4px 6px;
+    padding: 4px 8px;
+    font-family: "Gill Sans";
     font-size: 0.8125rem;
     text-transform: uppercase;
     border: 1px solid var(--c-grey-400);
     border-radius: 0;
+    background-color: var(--c-bg-primary);
     color: var(--c-grey);
     transition: all 0.15s ease-in-out;
     cursor: pointer;
@@ -219,7 +221,7 @@ header hr {
 }
 
 .select-read-status option {
-    padding: 2px 6px;
+    padding: 2px 8px;
     background-color: var(--c-bg-primary);
     transition: all 0.15s ease-in-out;
 }
