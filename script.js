@@ -27,17 +27,24 @@ function createCard(book) {
         const bookAuthor = document.createElement("p");
         const bookPages = document.createElement("p");
         const selectBookRead = document.createElement("select");
+        const modalEditBtn = document.createElement("button");
         const modalDeleteBtn = document.createElement("button");
+        const editIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         const deleteIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-        const useElem = document.createElementNS("http://www.w3.org/2000/svg", "use");
+        const useEditIcon = document.createElementNS("http://www.w3.org/2000/svg", "use");
+        const useDeleteIcon = document.createElementNS("http://www.w3.org/2000/svg", "use");
 
         card.classList.add("card");
         card.dataset.id = book.id;
         selectBookRead.classList.add("select-read-status");
-        modalDeleteBtn.classList.add("modal-delete-btn");
+        modalEditBtn.classList.add("modal-btn");
+        modalDeleteBtn.classList.add("modal-btn");
+        modalEditBtn.setAttribute("popovertarget", "edit-modal");
         modalDeleteBtn.setAttribute("popovertarget", "delete-modal");
-        deleteIcon.classList.add("delete-icon");
-        useElem.setAttribute("href", "./svg/feather-sprite.svg#trash-2");
+        editIcon.classList.add("card-icon");
+        deleteIcon.classList.add("card-icon");
+        useEditIcon.setAttribute("href", "./svg/feather-sprite.svg#edit-3");
+        useDeleteIcon.setAttribute("href", "./svg/feather-sprite.svg#trash-2");
 
         ["Read", "Still reading", "Not read"].forEach(status => {
             const option = document.createElement("option");
@@ -51,18 +58,26 @@ function createCard(book) {
         bookPages.textContent = `${book.pages} p.`;
         selectBookRead.value = book.read;
 
-        card.append(bookTitle, bookAuthor, bookPages, selectBookRead, modalDeleteBtn);
+        card.append(bookTitle, bookAuthor, bookPages, selectBookRead, modalEditBtn, modalDeleteBtn);
+        modalEditBtn.appendChild(editIcon);
         modalDeleteBtn.appendChild(deleteIcon);
-        deleteIcon.appendChild(useElem);
+        editIcon.appendChild(useEditIcon);
+        deleteIcon.appendChild(useDeleteIcon);
 
-        // toggle read status 
+        // select read status dropdown menu
         selectBookRead.addEventListener("change", (e) => {
-            const book = myLibrary.find(element => element.id === card.dataset.id);
+            const book = myLibrary.find(el => el.id === card.dataset.id);
             book.read = e.target.value;
             updateStatsBooks();
         })
 
-        // toggle delete modal, store book id
+        // open edit modal, store book id
+        modalEditBtn.addEventListener("click", () => {
+            selectedBookId = card.dataset.id;
+            fillEditModal(card.dataset.id);
+        });
+
+        // open delete modal, store book id
         modalDeleteBtn.addEventListener("click", () => {
             selectedBookId = card.dataset.id;
         })
@@ -77,15 +92,27 @@ function displayBooks() {
     myLibrary.forEach(book => container.appendChild(createCard(book)));
 }
 
+// edit modal
+function fillEditModal(bookId) {
+    const book = myLibrary.find(el => el.id === bookId);
+
+    document.getElementById("edit-title").value = book.title;
+    document.getElementById("edit-author").value = book.author;
+    document.getElementById("edit-pages").value = book.pages;
+   
+    const radio = document.querySelector(`input[name="edit-read"][value="${book.read}"]`);
+    if (radio) radio.checked = true;
+}
+
 // delete modal
 const deleteBtn = document.querySelector(".delete-btn");
 
 deleteBtn.addEventListener("click", (e) => {
-        const findBook = myLibrary.findIndex(element => element.id === selectedBookId)
-        myLibrary.splice(findBook, 1);
-        displayBooks(); // re-render instead of manually removing card
-        updateStatsBooks();
-    });
+    const findBook = myLibrary.findIndex(element => element.id === selectedBookId)
+    myLibrary.splice(findBook, 1);
+    displayBooks(); // re-render instead of manually removing card
+    updateStatsBooks();
+});
 
 
 // get book details from user form inputs, add book to library
@@ -103,6 +130,25 @@ addBook.addEventListener("submit", (event) => {
     updateStatsBooks();
     form.reset();
 });
+
+// edit book details from user form inputs, update book
+
+const editBook = document.getElementById("edit-form");
+
+editBook.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const book = myLibrary.find(el => el.id === selectedBookId);
+
+    book.title = document.getElementById("edit-title").value;
+    book.author = document.getElementById("edit-author").value;
+    book.pages = document.getElementById("edit-pages").value;
+    book.read = document.querySelector("input[name='edit-read']:checked")?.value || book.read;
+
+    displayBooks();
+    updateStatsBooks();
+    document.getElementById("edit-modal").hidePopover();
+});
+
 
 
 // display examples
