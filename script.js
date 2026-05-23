@@ -120,7 +120,7 @@ deleteBtn.addEventListener("click", (e) => {
 
 
 // get book details from user form inputs, add book to library
-const addBook = document.getElementById("form");
+const addBook = document.getElementById("add-form");
 
 addBook.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -132,7 +132,7 @@ addBook.addEventListener("submit", (event) => {
     addBookToLibrary(title, author, pages, read);
     displayBooks();
     updateStatsBooks();
-    form.reset();
+    addBook.reset();
 });
 
 // edit book details from user form inputs, update book
@@ -182,7 +182,6 @@ filterContainer.addEventListener("click", (e) => {
 
     displayBooks();
 });
-
 
 
 // display examples

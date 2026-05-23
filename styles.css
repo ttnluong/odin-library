@@ -126,7 +126,9 @@ header {
     grid-template-areas: 
     "title title"
     "subtitle filters";
-    margin: 120px 36px 36px;
+    margin: 120px 36px 0px;
+    padding-bottom: 36px;
+    border-bottom: 1px solid var(--c-grey-faint);
 }
 
 header h1 {
@@ -205,6 +207,10 @@ header .filters {
     color: var(--c-text-muted);
 }
 
+.card > p + p {
+    min-width: 40px;
+}
+
 /* dropdown menu select read status */
 
 select,
@@ -213,6 +219,7 @@ select,
 }
 
 .select-read-status {
+    min-width: 122px;
     padding: 4px 8px;
     font-family: "Gill Sans";
     font-size: 0.8125rem;
@@ -223,7 +230,6 @@ select,
     color: var(--c-text-muted);
     transition: all 0.15s ease-in-out;
     cursor: pointer;
-    size: 3;
 }
 
 .select-read-status:hover {
@@ -262,6 +268,7 @@ select,
 /* buttons: open modal edit book and delete confirmation */
 
 .modal-btn {
+    min-width: 20px;
     display: flex;
     justify-content: end;
     background: none;
@@ -307,11 +314,7 @@ aside {
     flex-direction: column;
     flex-basis: 320px;
     min-width: 260px;
-}
-
-.stats-wrapper hr {
-    margin-top: auto;
-    border-top: 1px solid var(--c-bg-primary);
+    border-bottom: 1px solid var(--c-bg-primary);
 }
 
 li {
@@ -357,10 +360,7 @@ form {
 .form-wrapper h2 {
     padding: 20px 0px;
     font-size: 1.25rem;
-}
-
-.form-wrapper hr {
-    border-top: 1px solid var(--c-bg-primary);
+    border-bottom: 1px solid var(--c-bg-primary);
 }
 
 .form-content {
@@ -396,7 +396,7 @@ input:focus {
 input[type="radio"] {
     appearance: none;
     height: 20px;
-    background-color: var(--c-bg-secondary);
+    background-color: transparent;
     cursor: pointer;
     transition: border 0.15s ease-in-out;
 }
@@ -451,8 +451,7 @@ input[type="radio"]:checked+label {
     gap: 10px;
 }
 
-.add-book-button #submit,
-.edit-book-buttons #submit {
+.submit-btn {
     padding: 6px 14px;
     border: none;
     font-size: 0.8125rem;
@@ -462,8 +461,7 @@ input[type="radio"]:checked+label {
     transition: all 0.15s ease-in-out;
 }
 
-.add-book-button #sumbit:hover,
-.edit-book-buttons #submit:hover {
+.submit-btn:hover {
     box-shadow: inset 0 0 0 1px var(--c-black);
     background-color: var(--c-bg-secondary);
     color: var(--c-black);
@@ -485,7 +483,6 @@ input[type="radio"]:checked+label {
 }
 
 .modal button {
-    padding: 6px;
     text-transform: uppercase;
     font-size: 0.8125rem;
 }
@@ -540,4 +537,81 @@ input[type="radio"]:checked+label {
 
 .delete-btn:hover {
     background-color: color-mix(in hsl shorter hue, var(--c-red), black 12%)
+}
+
+
+/* MEDIA QUERIES
+====================================================== */
+
+@media (width <= 980px) {
+
+    .container{
+        grid-template: repeat(4, auto) / 1fr;
+    }
+
+    header {
+        grid-row: 1;
+        position: relative;
+    }
+
+    .stats-section {
+        grid-row: 2 / 3;
+        position: relative;
+        display: inline;
+        justify-content: start;
+        padding: 20px 36px 0px;
+        background-color: transparent;
+    }
+
+    .stats-wrapper {
+        gap: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--c-grey-faint);
+    }
+
+    .stats-wrapper ol {
+        display: flex;
+        gap: 20px;
+    }
+
+    .add-form {
+        grid-column: -1 / 5;
+        grid-row: 3 / 4;
+        display: inline;
+        justify-content: space-between;
+        padding: 0px 36px;
+        background-color: transparent;
+    }
+
+    .add-form .form-wrapper {
+        position: relative;
+        top: 0px;
+        display: grid;
+        grid-template: repeat(5, auto) / 1fr 1fr;
+        column-gap: 36px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid var(--c-grey-faint);
+    }
+
+    .form-wrapper h2,
+    .form-wrapper hr,
+    .add-book-button {
+        grid-column: 1 / span 2;
+    }
+
+    .form-wrapper h2 {
+        border-bottom: 1px solid var(--c-bg-secondary);
+    }
+
+    .add-book-button {
+        margin-top: 10px;
+    }
+
+    .add-book-button .submit-btn:hover {
+        background-color: transparent;
+    }
+
+    .library {
+        grid-row: 4 / 5;
+    }
 }

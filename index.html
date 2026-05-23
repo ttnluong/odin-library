@@ -13,33 +13,31 @@
             <div class="header-text">
                 <h1>My Library</h1>
                 <p>Your personal shelf, a collection of books</p>
+                <div class="filters">
+                    <h4>Filter by:</h4>
+                    <button class="filter-btn active" data-filter="All">All</button>
+                    <button class="filter-btn" data-filter="Read">Read</button>
+                    <button class="filter-btn" data-filter="Still reading">Still reading</button>
+                    <button class="filter-btn" data-filter="Not read">Not read</button>
+                </div>
             </div>
-            <div class="filters">
-                <button data-filter="All">All</button>
-                <button data-filter="Read">Read</button>
-                <button data-filter="Still reading">Still reading</button>
-                <button data-filter="Not read">Not read</button>
-            </div>
-            <hr>
         </header>
         <main class="library">
         </main>
         <aside>
             <section class="stats-section">
                 <div class="stats-wrapper">
-                    <ol><!--  -->
+                    <ol>
                         <li><h4 id="stat-total"></h4><p>Books total</p></li>
                         <li><h4 id="stat-read"></h4><p>Read</p></li>
                         <li><h4 id="stat-still-reading"></h4><p>Still reading</p></li>
                         <li><h4 id="stat-not-read"></h4><p>Not read</p></li>
                     </ol>
-                    <hr>
                 </div>
             </section>
-            <form id="form" action="#" method="get">
+            <form class="add-form" id="add-form" action="#" method="get">
                 <div class="form-wrapper">
                     <h2>Add new book</h2>
-                    <hr>
                     <div class="form-content">
                         <label for="title">Title *</label>
                         <input type="text" id="title" name="title" required>
@@ -70,16 +68,16 @@
                         </div>
                     </div>
                     <div class="add-book-button">
-                        <button type="submit" id="submit">Add book</button>
+                        <button type="submit" class="submit-btn" id="submit">Add book</button>
                     </div>
                 </div>
             </form>
         </aside>
     </div>
-    <dialog class="modal" id="edit-modal" popover>
+    <dialog class="modal" id="edit-modal">
         <form id="edit-form">
             <div class="form-wrapper">
-                <h2>Add new book</h2>
+                <h2>Edit book details</h2>
                 <hr>
                 <div class="form-content">
                     <label for="edit-title">Title *</label>
@@ -110,11 +108,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="add-book-button">
-                    <button type="submit" id="submit">Edit book</button>
-                </div>
             </div>
         </form>
+        <div class="edit-book-buttons">
+            <div class="edit-book-buttons-wrapper">
+                <button class="cancel-btn" commandfor="edit-modal" command="close">Cancel</button>
+                <button type="submit" class="submit-btn" id="submit" form="edit-form">Edit book</button>
+            </div>
+        </div>
     </dialog>
     <dialog class="modal" id="delete-modal" popover>
         <div class="delete-modal-content">
