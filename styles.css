@@ -249,8 +249,13 @@ select,
     rotate: 180deg;
 }
 
+.select-read-status:open {
+    border: 1px solid var(--c-black);
+    color: var(--c-text-default);
+}
+
 .select-read-status option {
-    padding: 2px 8px;
+    padding: 2px 4px 2px 8px;
     background-color: var(--c-bg-primary);
     transition: all 0.15s ease-in-out;
 }
@@ -529,6 +534,10 @@ input[type="radio"]:checked+label {
     color: var(--c-text-muted);
 }
 
+.delete-modal-content button {
+    padding: 6px;
+}
+
 .delete-btn {
     border: none;
     font-weight: 500;
@@ -545,20 +554,22 @@ input[type="radio"]:checked+label {
 
 @media (width <= 980px) {
 
-    .container{
+    .container {
         grid-template: repeat(4, auto) / 1fr;
+        align-content: start;
     }
 
     header {
+        grid-column: 1 / 5;
         grid-row: 1;
         position: relative;
     }
 
     .stats-section {
+        grid-column: 1 / 5;
         grid-row: 2 / 3;
         position: relative;
         display: inline;
-        justify-content: start;
         padding: 20px 36px 0px;
         background-color: transparent;
     }
@@ -575,10 +586,9 @@ input[type="radio"]:checked+label {
     }
 
     .add-form {
-        grid-column: -1 / 5;
+        grid-column: 1 / 5;
         grid-row: 3 / 4;
         display: inline;
-        justify-content: space-between;
         padding: 0px 36px;
         background-color: transparent;
     }
@@ -612,6 +622,7 @@ input[type="radio"]:checked+label {
     }
 
     .library {
+        grid-column: 1 / 5;
         grid-row: 4 / 5;
     }
 }
