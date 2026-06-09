@@ -1,6 +1,9 @@
 # Library App
 A simple browser-based library management app built with vanilla JavaScript, HTML, and CSS, created as part of The Odin Project JavaScript curriculum.
 
+## Live Demo
+[View Demo](https://ttnluong.github.io/odin-library/)
+
 ## Features
 - View all books in your library displayed as cards
 - Add new books via a form (title, author, pages, read status)
@@ -20,6 +23,3 @@ A simple browser-based library management app built with vanilla JavaScript, HTM
 - Unique ID generation with crypto.randomUUID()
 - Form handling with event.preventDefault()
 - Data attributes for linking DOM elements to objects
-
-## Live Demo
-[View Demo](https://ttnluong.github.io/odin-library/)
