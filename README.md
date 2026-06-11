@@ -1,5 +1,5 @@
 # Library App
-A simple browser-based library management app built with vanilla JavaScript, HTML, and CSS, created as part of The Odin Project JavaScript curriculum.
+A simple browser-based library management app built with vanilla JavaScript, HTML, and CSS, created as part of The Odin Project curriculum.
 
 Project from [The Odin Project](https://www.theodinproject.com/lessons/node-path-javascript-library) — JavaScript course.
 
