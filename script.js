@@ -1,27 +1,34 @@
 // LIBRARY
+// ==========================================
 
 const myLibrary = [];
 
 // track active filter
 let activeFilter = "All";
 
-// constructor for books
-function Book(title, author, pages, read) {
-    this.id = crypto.randomUUID();
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-}
+// class for books
+class Book {
+    constructor(title, author, pages, read) {
+        this.id = crypto.randomUUID();
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    };
+};
 
 // store new book object into the library array
 function addBookToLibrary(title, author, pages, read) {
     const book = new Book(title, author, pages, read);
     myLibrary.push(book);
-}
+};
 
 // stored book id for deletion
 let selectedBookId = null;
+
+
+// UI LIBRARY
+// ==========================================
 
 // create card for a book, the card has a select status dropdown menu and delete book button
 function createCard(book) {
@@ -89,12 +96,12 @@ function createCard(book) {
         return card;
     };
 
-// loops through the library array and displays each book on the page as a card
+// loops through the library array and displays each book as a card
 function displayBooks() {
     const container = document.querySelector(".library");
     container.innerHTML = "";
     getFilteredBooks().forEach(book => container.appendChild(createCard(book)));
-}
+};
 
 // edit modal
 function fillEditModal(bookId) {
@@ -106,7 +113,7 @@ function fillEditModal(bookId) {
    
     const radio = document.querySelector(`input[name="edit-read"][value="${book.read}"]`);
     if (radio) radio.checked = true;
-}
+};
 
 // delete modal
 const deleteBtn = document.querySelector(".delete-btn");
@@ -118,6 +125,9 @@ deleteBtn.addEventListener("click", (e) => {
     updateStatsBooks();
 });
 
+
+// BOOK FORMS
+// ==========================================
 
 // get book details from user form inputs, add book to library
 const addBook = document.getElementById("add-form");
@@ -152,13 +162,15 @@ editBook.addEventListener("submit", (e) => {
     document.getElementById("edit-modal").close();
 });
 
+
 // FILTER
+// ==========================================
 
 // filter array, called by displayBooks()
 function getFilteredBooks() {
     if (activeFilter === "All") return myLibrary;
     return myLibrary.filter(book => book.read === activeFilter);
-}
+};
 
 // store activeFilter -> call displayBooks(), add button class active for underline, toggle filter with double click
 const filterContainer = document.querySelector(".filters");
@@ -184,6 +196,9 @@ filterContainer.addEventListener("click", (e) => {
 });
 
 
+// DISPLAY EXAMPLES
+// ==========================================
+
 // display examples
 addBookToLibrary("The Darkroom of Damocles", "Willem Frederik Hermans", 416, "Read");
 addBookToLibrary("The Fall of Public Man", "Richard Sennett", 512, "Still reading");
@@ -200,6 +215,7 @@ displayBooks();
 
 
 // STATISTICS
+// ==========================================
 
 const statsTotal = document.getElementById("stat-total");
 const statsRead = document.getElementById("stat-read");
@@ -215,11 +231,13 @@ function updateStatsBooks() {
     statsRead.textContent = statRead.length;
     statsStillReading.textContent = statStillReading.length;
     statsNotRead.textContent = statNotRead.length;
-}
+};
 
 updateStatsBooks();
 
-// TO DO
 
-// add: edit details books feature
+// TO DO
+// ==========================================
+
 // add: categories
+// add: localstorage
